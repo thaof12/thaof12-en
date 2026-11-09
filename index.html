@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trần Thế Hào - Game Designer & Software Engineer Portfolio. Specializing in 2D educational games, Cocos Creator, Godot Engine, ReactJS, Supabase.">
+    <meta name="keywords" content="Game Designer, Software Engineer, Cocos Creator, Godot Engine, ReactJS, Trần Thế Hào, Portfolio">
+    <meta name="author" content="Trần Thế Hào">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Trần Thế Hào | Game Designer & Software Engineer">
+    <meta property="og:description" content="Final-year Software Engineering student aiming to become a Game Designer for 2D educational games.">
+    <meta property="og:type" content="website">
+    
+    <title>Trần Thế Hào | Game Designer & Software Engineer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Google Fonts: Playfair Display (hỗ trợ hoàn hảo tiếng Việt, sửa lỗi khoảng cách dấu), Manrope, Plus Jakarta Sans & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           TYPOGRAPHY & DESIGN SYSTEM
+           (TĂNG TOÀN BỘ FONT SIZE LÊN 5PX, SỬA LỖI KHOẢNG CÁCH DẤU TIẾNG VIỆT)
+           ========================================================================== */
+        :root {
+            /* Font Families: Playfair Display chuẩn tiếng Việt thay cho Instrument Serif bị lỗi tách dấu */
+            --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-premium-serif: 'Playfair Display', Georgia, serif;
+            --font-code: 'Fira Code', monospace;
+
+            /* Warm Ivory Palette (Trắng ngà tự nhiên) */
+            --bg-base: #FAF7F2;
+            --bg-surface: #FFFFFF;
+            --bg-subtle: #F3EFE9;
+            --bg-subtle-hover: #EBE5DC;
+            
+            /* Borders */
+            --border-light: #ECE5DA;
+            --border: #DFD7CA;
+            --border-dark: #C5BCAD;
+            
+            /* Inks */
+            --text-heading: #1A1917;
+            --text-body: #3E3B36;
+            --text-muted: #6B6760;
+            --text-subtle: #969188;
+            
+            /* Solid Accent Colors */
+            --primary: #1A1917;
+            --primary-hover: #2D2B28;
+            --primary-text: #FAF7F2;
+            
+            --accent-link: #1B4D3E;
+            --status-green: #1B7A42;
+            --status-bg: #EAF5EE;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(26, 25, 23, 0.04);
+            --shadow-md: 0 4px 12px rgba(26, 25, 23, 0.05);
+            --shadow-lg: 0 12px 28px rgba(26, 25, 23, 0.07);
+            --shadow-card: 0 1px 3px rgba(26, 25, 23, 0.04), 0 6px 18px rgba(26, 25, 23, 0.03);
+            
+            /* Radii & Transitions */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Base Resets */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: none !important;
+        }
+
+        /* TĂNG BASE FONT SIZE CỦA WEB LÊN +5PX (16px + 5px = 21px) */
+        html {
+            scroll-behavior: smooth;
+            font-size: 21px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem; /* 21px (tăng 5px so với 16px trước đây) */
+            background-color: var(--bg-base);
+            color: var(--text-body);
+            line-height: 1.68;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Utility Font Classes */
+        .font-body, .font-sans {
+            font-family: var(--font-body);
+        }
+
+        .font-heading {
+            font-family: var(--font-heading);
+        }
+
+        .font-premium-serif {
+            font-family: var(--font-premium-serif);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-dark);
+            border-radius: var(--radius-full);
+            border: 2px solid var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Headings trong Manrope */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            font-family: var(--font-body);
+            color: var(--text-body);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           NAVIGATION (Logo chuẩn font tiếng Việt, tăng 5px)
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            background-color: rgba(250, 247, 242, 0.94);
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(250, 247, 242, 0.98);
+            border-bottom-color: var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Brand Logo: Chuẩn diacritic tiếng Việt, tăng 5px (từ 34px lên 39px) */
+        .logo {
+            font-family: var(--font-premium-serif);
+            font-size: 1.85rem; /* ~39px */
+            font-weight: 600;
+            color: var(--text-heading);
+            letter-spacing: normal;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.25rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        /* Nav links tăng 5px (từ 14px lên 19px) */
+        .nav-links a {
+            font-family: var(--font-heading);
+            color: var(--text-muted);
+            font-size: 0.9rem; /* ~19px */
+            font-weight: 600;
+            padding: 0.35rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-heading);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-heading);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-heading);
+            font-size: 1.25rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: var(--bg-subtle);
+        }
+
+        /* ==========================================================================
+           BUTTONS (Tăng font 5px lên 19px)
+           ========================================================================== */
+        .btn {
+            font-family: var(--font-heading);
+            padding: 0.8rem 1.65rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem; /* ~19px */
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--primary-text);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-surface);
+            color: var(--text-heading);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-subtle);
+            border-color: var(--border-dark);
+            color: var(--text-heading);
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem; /* ~18px */
+            border-radius: var(--radius-sm);
+        }
+
+        /* ==========================================================================
+           HERO SECTION (Sửa lỗi khoảng cách dấu Trần Thế Hào, Tăng size 5px)
+           ========================================================================== */
+        .hero {
+            padding: 4.5rem 2rem 5rem;
+            min-height: auto;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 660px;
+        }
+
+        /* Dòng chữ nhận diện: Font chuẩn tiếng Việt, không bị tách dấu, tăng 5px (từ 68px lên 73px) */
+        .hero-content h1 {
+            font-family: var(--font-premium-serif);
+            font-size: 3.5rem; /* ~73.5px */
+            font-weight: 600;
+            color: var(--text-heading);
+            line-height: 1.12;
+            margin-bottom: 0.75rem;
+            letter-spacing: normal;
+        }
+
+        /* Tiêu đề phụ tăng 5px (từ 22px lên 27px) */
+        .hero-subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.3rem; /* ~27.3px */
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 1.6rem;
+            letter-spacing: -0.015em;
+        }
+
+        /* Nội dung mô tả tăng 5px (từ 16px lên 21px) */
+        .hero-description {
+            font-family: var(--font-body);
+            font-size: 1rem; /* 21px */
+            color: var(--text-body);
+            line-height: 1.72;
+            margin-bottom: 2.35rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.1rem;
+            align-items: center;
+            margin-bottom: 2.35rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 0.95rem;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--text-heading);
+            border-color: var(--border-dark);
+            background-color: var(--bg-subtle);
+            transform: translateY(-2px);
+        }
+
+        /* Profile Presentation - Shape Circle */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-circle-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.35rem;
+        }
+
+        .profile-circle-container {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--bg-subtle);
+            border: 5px solid var(--bg-surface);
+            box-shadow: 0 0 0 1px var(--border), var(--shadow-card);
+            transition: var(--transition);
+            position: relative;
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0);
+        }
+
+        .profile-circle-container:hover {
+            box-shadow: 0 0 0 1px var(--border-dark), var(--shadow-lg);
+            transform: scale(1.02);
+        }
+
+        .profile-circle-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .profile-circle-caption {
+            text-align: center;
+        }
+
+        /* Thông tin hồ sơ tăng 5px (từ 20px lên 25px) */
+        .profile-circle-name {
+            font-family: var(--font-body);
+            font-size: 1.2rem; /* ~25.2px */
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Thông tin phụ tăng 5px (từ 13px lên 18px) */
+        .profile-circle-sub {
+            font-family: var(--font-body);
+            font-size: 0.85rem; /* ~18px */
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* ==========================================================================
+           SECTION COMMON STYLES
+           ========================================================================== */
+        section {
+            padding: 6.8rem 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .section-alt {
+            background-color: var(--bg-surface);
+        }
+
+        .section-container {
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3.75rem;
+        }
+
+        .section-header.text-center {
+            text-align: center;
+        }
+
+        /* Tiêu đề lớn tăng 5px (từ 36px lên 41px) */
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.95rem; /* ~41px */
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.85rem;
+        }
+
+        /* Mô tả phụ tăng 5px (từ 16px lên 21px) */
+        .section-subtitle {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-size: 0.9rem; /* ~19px */
+            max-width: 960px;
+            line-height: 1.65;
+        }
+
+        .section-header.text-center .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* Contact subtitle: 1 dòng không rớt */
+        #contact .section-subtitle {
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           ABOUT SECTION
+           ========================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Tiêu đề phụ tăng 5px (từ 23px lên 28px) */
+        .about-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem; /* ~28.3px */
+            font-weight: 700;
+            margin-bottom: 1.35rem;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .about-content p {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            margin-bottom: 1.35rem;
+            font-size: 1rem; /* 21px */
+            line-height: 1.72;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.35rem;
+            margin-top: 2.25rem;
+        }
+
+        .highlight-card {
+            background-color: var(--bg-surface);
+            padding: 1.35rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .highlight-number {
+            font-family: var(--font-heading);
+            font-size: 1.5rem; /* ~31.5px */
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight-label {
+            font-family: var(--font-body);
+            font-size: 0.85rem; /* ~18px */
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .about-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-circle-container {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: var(--bg-subtle);
+            border: 5px solid var(--bg-surface);
+            box-shadow: 0 0 0 1px var(--border), var(--shadow-card);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
+
+        .about-circle-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ==========================================================================
+           SKILLS SECTION
+           ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+        }
+
+        .skill-category {
+            background-color: var(--bg-surface);
+            padding: 2rem 2.25rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.15rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            background-color: var(--bg-subtle);
+            color: var(--text-heading);
+            border: 1px solid var(--border);
+        }
+
+        .skill-category h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem; /* ~24px */
+            font-weight: 700;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        /* Nhãn kỹ năng tăng 5px (từ 13px lên 18px) */
+        .skill-tag {
+            font-family: var(--font-heading);
+            padding: 0.45rem 0.95rem;
+            background-color: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem; /* ~18px */
+            font-weight: 600;
+            color: var(--text-heading);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--border-dark);
+            background-color: var(--bg-subtle-hover);
+        }
+
+        /* ==========================================================================
+           FEATURED PROJECTS
+           ========================================================================== */
+        .projects-showcase-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem;
+        }
+
+        .project-showcase-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+            transition: var(--transition);
+        }
+
+        .project-showcase-card:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-slider {
+            position: relative;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background-color: #121316;
+            border: 1px solid var(--border);
+            aspect-ratio: 16 / 9;
+            max-height: 560px;
+            min-height: 340px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .slider-viewport {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slider-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #16181d;
+        }
+
+        .slider-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.25s ease;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .slider-prev {
+            left: 1.25rem;
+            background-color: rgba(30, 32, 38, 0.75);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .slider-prev:hover {
+            background-color: rgba(45, 48, 58, 0.95);
+            transform: translateY(-50%) scale(1.06);
+        }
+
+        .slider-next {
+            right: 1.25rem;
+            background-color: #FFFFFF;
+            color: #1A1917;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            font-size: 1.1rem;
+        }
+
+        .slider-next:hover {
+            background-color: #FAF7F2;
+            transform: translateY(-50%) scale(1.06);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1.15rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            z-index: 10;
+            padding: 0.35rem 0.75rem;
+            background-color: rgba(18, 19, 22, 0.65);
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            max-width: 92%;
+            flex-wrap: wrap;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.45);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.25s ease;
+        }
+
+        .slider-dot.active {
+            width: 26px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: #FFFFFF;
+        }
+
+        .project-details {
+            padding: 0.5rem 0.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.35rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.35rem;
+        }
+
+        .project-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        /* Tiêu đề dự án tăng 5px (từ 23px lên 28px) */
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem; /* ~28.3px */
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .project-time-badge {
+            font-family: var(--font-body);
+            font-size: 0.85rem; /* ~18px */
+            font-weight: 600;
+            color: var(--text-muted);
+            background-color: var(--bg-subtle);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            width: fit-content;
+        }
+
+        .project-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.65rem;
+            background-color: var(--bg-base);
+            padding: 1rem 1.35rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            font-size: 1rem;
+        }
+
+        /* Overlines tăng 5px (từ 10px lên 15px) */
+        .meta-label, .tech-stack-label {
+            font-family: var(--font-heading);
+            font-size: 0.725rem; /* ~15.2px */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-heading);
+        }
+
+        .meta-val {
+            font-family: var(--font-body);
+            font-size: 1rem; /* 21px */
+            color: var(--text-body);
+        }
+
+        .project-tech-stack {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .tech-pill {
+            font-family: var(--font-code);
+            padding: 0.4rem 0.85rem;
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem; /* ~18px */
+            font-weight: 500;
+            color: var(--text-heading);
+        }
+
+        .project-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.95rem;
+        }
+
+        .project-feature-list li {
+            font-family: var(--font-body);
+            font-size: 1rem; /* 21px */
+            color: var(--text-body);
+            line-height: 1.7;
+            position: relative;
+            padding-left: 1.65rem;
+        }
+
+        .project-feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.72rem;
+            width: 7px;
+            height: 7px;
+            border-radius: var(--radius-full);
+            background-color: var(--primary);
+        }
+
+        .project-feature-list li strong {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           EXPERIENCE SECTION
+           ========================================================================== */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background-color: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 11px;
+            top: 26px;
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-full);
+            background-color: var(--bg-base);
+            border: 4px solid var(--text-heading);
+            box-shadow: 0 0 0 4px var(--bg-base);
+        }
+
+        .timeline-card {
+            background-color: var(--bg-surface);
+            padding: 2.25rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem; /* ~26px */
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .timeline-date {
+            font-family: var(--font-heading);
+            font-size: 0.85rem; /* ~18px */
+            font-weight: 600;
+            color: var(--text-muted);
+            background-color: var(--bg-subtle);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .timeline-company {
+            font-family: var(--font-body);
+            color: var(--accent-link);
+            font-weight: 600;
+            font-size: 1rem; /* 21px */
+            margin-bottom: 0.95rem;
+        }
+
+        .timeline-description {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            font-size: 1rem; /* 21px */
+            line-height: 1.7;
+        }
+
+        /* ==========================================================================
+           EDUCATION SECTION
+           ========================================================================== */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.25rem;
+        }
+
+        .education-card {
+            background-color: var(--bg-surface);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .education-card:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        .education-badge-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            color: var(--text-heading);
+            margin-bottom: 1.65rem;
+        }
+
+        .education-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem; /* ~26px */
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .education-card .school {
+            font-family: var(--font-body);
+            color: var(--accent-link);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .education-card .details {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .education-gpa {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            color: var(--text-heading);
+            margin-top: 0.85rem;
+        }
+
+        .education-gpa strong {
+            font-weight: 700;
+        }
+
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            margin-top: 1.15rem;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 1.15rem;
+            padding: 1.15rem;
+            background-color: var(--bg-base);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .cert-item:hover {
+            border-color: var(--border);
+            background-color: var(--bg-subtle);
+        }
+
+        .cert-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .cert-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 0.2rem;
+        }
+
+        .cert-info p {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           CONTACT SECTION (Shape đều đẹp, không rớt chữ)
+           ========================================================================== */
+        .contact-cards-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .contact-card-box {
+            min-height: 180px;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.65rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+        }
+
+        .contact-card-box:hover {
+            border-color: var(--border-dark);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            font-size: 1.25rem;
+            margin-bottom: 0.2rem;
+            transition: var(--transition);
+        }
+
+        .contact-card-box:hover .contact-card-icon {
+            background-color: var(--primary);
+            color: var(--primary-text);
+            border-color: var(--primary);
+        }
+
+        /* Nhãn liên hệ */
+        .contact-card-label {
+            font-family: var(--font-heading);
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        /* Giá trị liên hệ - hiển thị đầy đủ trên 1 dòng, không rớt chữ */
+        .contact-card-val {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            white-space: nowrap;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* ==========================================================================
+           CV MODAL PREVIEW
+           ========================================================================== */
+        .cv-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(20, 19, 18, 0.7);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .cv-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cv-modal-box {
+            background-color: var(--bg-surface);
+            width: 100%;
+            max-width: 950px;
+            height: 88vh;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.97);
+            transition: transform 0.25s ease;
+        }
+
+        .cv-modal-overlay.active .cv-modal-box {
+            transform: scale(1);
+        }
+
+        .cv-modal-header {
+            padding: 1.15rem 1.65rem;
+            background-color: var(--bg-base);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cv-modal-title {
+            font-family: var(--font-heading);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.15rem; /* ~24px */
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .cv-modal-title i {
+            color: #C53030;
+            font-size: 1.35rem;
+        }
+
+        .cv-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .cv-modal-close {
+            background: none;
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cv-modal-close:hover {
+            background-color: var(--bg-subtle);
+            border-color: var(--border-dark);
+        }
+
+        .cv-modal-body {
+            flex: 1;
+            width: 100%;
+            background-color: #525659;
+            position: relative;
+        }
+
+        .cv-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ==========================================================================
+           FOOTER (Gọn gàng, tinh tế chuẩn các website lớn)
+           ========================================================================== */
+        footer {
+            background-color: var(--bg-base);
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            letter-spacing: 0.01em;
+        }
+
+        /* Brand Logo Footer: Nhỏ gọn, tinh tế */
+        .footer-logo {
+            font-family: var(--font-premium-serif);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            letter-spacing: normal;
+            line-height: 1;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-buttons,
+            .hero-socials {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .profile-circle-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .about-circle-container {
+                width: 260px;
+                height: 260px;
+            }
+
+            .project-slider {
+                max-height: 420px;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 19px; /* Tối ưu kích thước trên màn hình di động */
+            }
+
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-surface);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.25rem;
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 3.5rem 1.5rem 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+            }
+
+            .section-title {
+                font-size: 1.65rem;
+            }
+
+            section {
+                padding: 4.5rem 1.5rem;
+            }
+
+            .project-showcase-card {
+                padding: 1.35rem;
+                gap: 1.5rem;
+            }
+
+            .project-slider {
+                min-height: 230px;
+                border-radius: var(--radius-md);
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+
+            .slider-prev {
+                left: 0.75rem;
+            }
+
+            .slider-next {
+                right: 0.75rem;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .contact-card-box {
+                min-height: 165px;
+                padding: 1.35rem 0.75rem;
+            }
+
+            .contact-card-val {
+                white-space: nowrap;
+                font-size: 0.74rem;
+            }
+
+            .cv-modal-box {
+                height: 92vh;
+            }
+
+            .slider-dots {
+                bottom: 0.75rem;
+                gap: 0.35rem;
+                padding: 0.25rem 0.55rem;
+            }
+
+            .slider-dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .slider-dot.active {
+                width: 16px;
+                height: 6px;
+            }
+
+            .timeline-item {
+                padding-left: 45px;
+            }
+
+            .timeline::before {
+                left: 12px;
+            }
+
+            .timeline-marker {
+                left: 3px;
+                width: 18px;
+                height: 18px;
+            }
+
+            .timeline-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .skill-category {
+                padding: 1.6rem 1.25rem;
+            }
+
+            .education-card {
+                padding: 1.6rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .contact-cards-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-card-val {
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 17px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .profile-circle-container {
+                width: 230px;
+                height: 230px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="font-premium-serif">Trần Thế Hào</h1>
+                <p class="hero-subtitle">Game Designer & Software Engineer</p>
+                <p class="hero-description">
+                    Final-year Software Engineering student aiming to become a Game Designer for 2D educational games. 
+                    Independently designed and developed 2 games (Godot, Cocos Creator) and 1 web-based learning platform with 4 user roles. 
+                    Strength: turning academic knowledge into interactive gameplay mechanics, combining a testing mindset with bug diagnosis to fine-tune the player experience.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-arrow-down"></i> View Projects
+                    </a>
+                    <button type="button" class="btn btn-secondary" id="btnOpenCv">
+                        <i class="fas fa-file-pdf"></i> View CV
+                    </button>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/thaof12/" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:tranthehao7431@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:0877186721" class="social-link" title="Phone">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-up" data-aos-delay="100">
+                <div class="profile-circle-wrapper">
+                    <div class="profile-circle-container">
+                        <img src="avata.jpg" alt="Trần Thế Hào avatar" class="profile-circle-img" id="profileImg">
+                    </div>
+                    <div class="profile-circle-caption">
+                        <div class="profile-circle-name">Trần Thế Hào</div>
+                        <div class="profile-circle-sub">
+                            <i class="fas fa-map-marker-alt"></i> Ho Chi Minh City
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Technical proficiencies honed through real-world game and system development</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Game Design</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Gameplay Design</span>
+                        <span class="skill-tag">Interactive Mechanics</span>
+                        <span class="skill-tag">Level Design</span>
+                        <span class="skill-tag">Educational Games</span>
+                        <span class="skill-tag">Mini-game Scripting</span>
+                        <span class="skill-tag">Playtesting & Experience Tuning</span>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Engine & Code</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Godot Engine 4</span>
+                        <span class="skill-tag">Cocos Creator 3.8</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Physics 2D</span>
+                        <span class="skill-tag">Raycasting 2D</span>
+                        <span class="skill-tag">WebGL / HTML5</span>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3>Web & Systems</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ReactJS</span>
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">Authentication</span>
+                        <span class="skill-tag">Draw.io</span>
+                        <span class="skill-tag">Vercel (CI/CD)</span>
+                        <span class="skill-tag">Git / GitHub</span>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-category-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Soft Skills</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Design Thinking</span>
+                        <span class="skill-tag">Self-motivated Learning</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">System Troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section-alt" id="projects">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Interactive 2D physics simulation games and educational web platform</p>
+            </div>
+            
+            <div class="projects-showcase-list">
+                
+                <!-- PROJECT 1: Robot Eureka -->
+                <article class="project-showcase-card" data-aos="fade-up">
+                    <div class="project-slider" data-slider="slider-robot-eureka">
+                        <div class="slider-viewport">
+                            <div class="slider-track">
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/welcome-scene.webp" alt="Robot Eureka - Welcome screen" loading="eager" fetchpriority="high">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/scene-1.webp" alt="Robot Eureka - Level 1" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/scene-2.webp" alt="Robot Eureka - Level 2" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/scene-3.webp" alt="Robot Eureka - Level 3" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/scene-4.webp" alt="Robot Eureka - Level 4" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="robot-eureka/scene-back.webp" alt="Robot Eureka - Challenge details" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="slider-arrow slider-prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <div class="slider-dots"></div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-header">
+                            <div class="project-title-group">
+                                <h3 class="project-title">Robot Eureka – 2D Physics Simulation & Puzzle Game</h3>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://robot-physic-eureka.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                    <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-meta-row">
+                            <div class="meta-item">
+                                <span class="meta-label">Role:</span>
+                                <span class="meta-val">Game Designer & Developer</span>
+                            </div>
+                        </div>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-stack-label">Technologies:</span>
+                            <div class="tech-pills">
+                                <span class="tech-pill">Cocos Creator 3.8</span>
+                                <span class="tech-pill">TypeScript</span>
+                                <span class="tech-pill">Physics 2D</span>
+                                <span class="tech-pill">WebGL / HTML5</span>
+                                <span class="tech-pill">Vercel</span>
+                                <span class="tech-pill">Git</span>
+                            </div>
+                        </div>
+
+                        <ul class="project-feature-list">
+                            <li>
+                                <strong>Puzzle Level Design:</strong> Designed puzzle levels built around 3 physical phenomena: spring elastic force (Hooke's law), refraction/reflection of light through a lens system, and cable–pulley mechanics in an elevator.
+                            </li>
+                            <li>
+                                <strong>Interactive Mechanics:</strong> Built interactive mechanics: players adjust parameters themselves and see results instantly (light rays drawn dynamically with 2D raycasting, 2D collider collisions, gravity counterbalancing/lifting).
+                            </li>
+                            <li>
+                                <strong>Error Analysis & Support:</strong> Developed error-analysis skills and practiced technical support in real-world scenarios.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- PROJECT 2: Shi with You -->
+                <article class="project-showcase-card" data-aos="fade-up">
+                    <div class="project-slider" data-slider="slider-shi-with-you">
+                        <div class="slider-viewport">
+                            <div class="slider-track">
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-welcome.webp" alt="Shi with You - Start screen" loading="eager" fetchpriority="high">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-choose-game.webp" alt="Shi with You - Select game mode" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-memory-card.webp" alt="Shi with You - Memory Card challenge" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-picture-match.webp" alt="Shi with You - Picture Match challenge" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-word-catcher.webp" alt="Shi with You - Word Catcher challenge" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-spell-bridge.webp" alt="Shi with You - Spell Bridge challenge" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="Shi-with-you/shi-well-done.webp" alt="Shi with You - Completion screen" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="slider-arrow slider-prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <div class="slider-dots"></div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-header">
+                            <div class="project-title-group">
+                                <h3 class="project-title">Shi with You – English Learning Game for Children</h3>
+                            </div>
+                            <div class="project-actions">
+                                <a href="http://shiwith-you.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                    <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-meta-row">
+                            <div class="meta-item">
+                                <span class="meta-label">Role:</span>
+                                <span class="meta-val">Game Designer & Developer</span>
+                            </div>
+                        </div>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-stack-label">Technologies:</span>
+                            <div class="tech-pills">
+                                <span class="tech-pill">Godot Engine 4</span>
+                                <span class="tech-pill">Vercel</span>
+                                <span class="tech-pill">Git</span>
+                            </div>
+                        </div>
+
+                        <ul class="project-feature-list">
+                            <li>
+                                <strong>Scenario Design & Testing:</strong> Designed game scenarios and tested features (Memory Card, Picture Match, Word Catcher, Spell Bridge); managed system data files across multiple platforms.
+                            </li>
+                            <li>
+                                <strong>Diagnostic Thinking:</strong> Strengthened error-analysis skills and diagnostic thinking, troubleshooting real-world system issues in a business-like setting.
+                            </li>
+                            <li>
+                                <strong>Optimization & Compatibility:</strong> Diagnosed and resolved application asset-loading issues (images, audio), UI bugs, and end-user browser compatibility problems.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3: Eureka -->
+                <article class="project-showcase-card" data-aos="fade-up">
+                    <div class="project-slider" data-slider="slider-eureka">
+                        <div class="slider-viewport">
+                            <div class="slider-track">
+                                <div class="slider-slide">
+                                    <img src="EUREKA/home-page.webp" alt="Eureka - Physics learning platform homepage" loading="eager" fetchpriority="high">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/sign-up.webp" alt="Eureka - Sign up interface" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/class.webp" alt="Eureka - Course list and enrollment" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/my-class-page.webp" alt="Eureka - My classes overview" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/video-lesson.webp" alt="Eureka - Interactive video lesson" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/my-class.webp" alt="Eureka - Interactive classroom" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/interact.webp" alt="Eureka - Virtual lab & visual interaction" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/caculator.webp" alt="Eureka - Physics calculator & tools" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/game-robot.webp" alt="Eureka - Robot Eureka game integration" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/pk-battle.webp" alt="Eureka - 1v1 PK battle challenge" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/profile.webp" alt="Eureka - User profile & XP leaderboard" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/teacher-dashboard.webp" alt="Eureka - Teacher dashboard" loading="lazy">
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="EUREKA/admin-dashboard.webp" alt="Eureka - Admin dashboard" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="slider-arrow slider-prev" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-arrow slider-next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <div class="slider-dots"></div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-header">
+                            <div class="project-title-group">
+                                <h3 class="project-title">Eureka – Physics Learning Website</h3>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://eureka-th.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                    <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-meta-row">
+                            <div class="meta-item">
+                                <span class="meta-label">Role:</span>
+                                <span class="meta-val">Developer & System Designer</span>
+                            </div>
+                        </div>
+
+                        <div class="project-tech-stack">
+                            <span class="tech-stack-label">Technologies:</span>
+                            <div class="tech-pills">
+                                <span class="tech-pill">ReactJS</span>
+                                <span class="tech-pill">Vite</span>
+                                <span class="tech-pill">Express.js</span>
+                                <span class="tech-pill">Supabase (PostgreSQL)</span>
+                                <span class="tech-pill">Authentication (JWT)</span>
+                                <span class="tech-pill">Cocos Creator</span>
+                                <span class="tech-pill">Vercel</span>
+                            </div>
+                        </div>
+
+                        <ul class="project-feature-list">
+                            <li>
+                                <strong>4-Role Permission System:</strong> Implemented a 4-role permission system: Guest; Student (lectures, physics calculator, games, 1v1 PK mode); Teacher (create classes, assign work); Admin (manage users and content, approve teachers).
+                            </li>
+                            <li>
+                                <strong>Learning Ecosystem:</strong> Provides interactive lectures, virtual lab running on HTML5 Canvas, physics calculation tools, and directly hosts the 2D game Robot Eureka (embedded via iframe).
+                            </li>
+                            <li>
+                                <strong>System & Optimization:</strong> Designed 3-tier architecture (React, Express, PostgreSQL), implemented Row Level Security (RLS), and optimized multi-device loading performance.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Education Section -->
+    <section class="education section-alt" id="education">
+        <div class="section-container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2 class="section-title">Education & Certifications</h2>
+                <p class="section-subtitle">Academic foundation and recognized professional skill credentials</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card" data-aos="fade-up">
+                    <div class="education-badge-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Nguyen Tat Thanh University</h3>
+                    <p class="school">Faculty of Information Technology – Software Engineering</p>
+                    <p class="details">Duration: 2022 – 2026</p>
+                    <p class="education-gpa"><strong>GPA: 3.61 / 4.0</strong></p>
+                </div>
+
+                <div class="education-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="education-badge-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Professional Certifications</h3>
+                    <div class="cert-list">
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Microsoft Office Specialist Certification</h4>
+                                <p>International office productivity certification from Microsoft</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Derive Insights from BigQuery Data Skill Badge</h4>
+                                <p>Google Cloud — Data analytics and processing with BigQuery</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">I am always open to new career opportunities, collaborations, and technical discussions</p>
+            </div>
+
+            <!-- Contact cards centered horizontally -->
+            <div class="contact-cards-row" data-aos="fade-up">
+                <!-- Email -->
+                <a href="mailto:tranthehao7431@gmail.com" class="contact-card-box">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="contact-card-label">Personal Email</span>
+                    <span class="contact-card-val">tranthehao7431@gmail.com</span>
+                </a>
+
+                <!-- Phone -->
+                <a href="tel:0877186721" class="contact-card-box">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <span class="contact-card-label">Phone Number</span>
+                    <span class="contact-card-val">087 718 6721</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/thaof12/" target="_blank" rel="noopener noreferrer" class="contact-card-box">
+                    <div class="contact-card-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="contact-card-label">GitHub Profile</span>
+                    <span class="contact-card-val">github.com/thaof12</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2026 <span class="footer-logo font-premium-serif">Trần Thế Hào</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- CV Modal Preview -->
+    <div class="cv-modal-overlay" id="cvModalOverlay" aria-hidden="true">
+        <div class="cv-modal-box" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+            <div class="cv-modal-header">
+                <div class="cv-modal-title" id="cvModalTitle">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Trần Thế Hào - Curriculum Vitae</span>
+                </div>
+                <div class="cv-modal-actions">
+                    <a href="TranTheHao - CV.pdf" download="TranTheHao - CV.pdf" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <a href="TranTheHao - CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                        <i class="fas fa-arrow-up-right-from-square"></i> Open in new tab
+                    </a>
+                    <button type="button" class="cv-modal-close" id="cvModalClose" aria-label="Close preview modal">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="cv-modal-body">
+                <iframe src="TranTheHao - CV.pdf" class="cv-iframe" title="TranTheHao - CV Preview"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 600,
+            easing: 'ease-out',
+            once: true,
+            offset: 80
+        });
+
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        if (navLinks) {
+                            navLinks.classList.remove('active');
+                        }
+                    }
+                }
+            });
+        });
+
+        // CV Modal Preview Controller
+        const btnOpenCv = document.getElementById('btnOpenCv');
+        const cvModalOverlay = document.getElementById('cvModalOverlay');
+        const cvModalClose = document.getElementById('cvModalClose');
+
+        function openCvModal() {
+            if (cvModalOverlay) {
+                cvModalOverlay.classList.add('active');
+                cvModalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+        }
+
+        function closeCvModal() {
+            if (cvModalOverlay) {
+                cvModalOverlay.classList.remove('active');
+                cvModalOverlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+        }
+
+        if (btnOpenCv) {
+            btnOpenCv.addEventListener('click', openCvModal);
+        }
+
+        if (cvModalClose) {
+            cvModalClose.addEventListener('click', closeCvModal);
+        }
+
+        if (cvModalOverlay) {
+            cvModalOverlay.addEventListener('click', (e) => {
+                if (e.target === cvModalOverlay) {
+                    closeCvModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModalOverlay && cvModalOverlay.classList.contains('active')) {
+                closeCvModal();
+            }
+        });
+
+        // Image Slider Controller
+        function initProjectSliders() {
+            const sliders = document.querySelectorAll('.project-slider');
+            
+            sliders.forEach((slider) => {
+                const track = slider.querySelector('.slider-track');
+                const slides = slider.querySelectorAll('.slider-slide');
+                const prevBtn = slider.querySelector('.slider-prev');
+                const nextBtn = slider.querySelector('.slider-next');
+                const dotsContainer = slider.querySelector('.slider-dots');
+                
+                let currentIndex = 0;
+                const total = slides.length;
+                if (total === 0) return;
+
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        goToSlide(i);
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+
+                function updateSlider() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    dots.forEach((dot, idx) => {
+                        dot.classList.toggle('active', idx === currentIndex);
+                    });
+                }
+
+                function goToSlide(idx) {
+                    currentIndex = (idx + total) % total;
+                    updateSlider();
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        goToSlide(currentIndex - 1);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        goToSlide(currentIndex + 1);
+                    });
+                }
+
+                let startX = 0;
+                let isSwiping = false;
+
+                slider.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isSwiping = true;
+                }, { passive: true });
+
+                slider.addEventListener('touchend', (e) => {
+                    if (!isSwiping) return;
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    if (Math.abs(diffX) > 40) {
+                        if (diffX > 0) {
+                            goToSlide(currentIndex + 1);
+                        } else {
+                            goToSlide(currentIndex - 1);
+                        }
+                    }
+                    isSwiping = false;
+                }, { passive: true });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initProjectSliders);
+        initProjectSliders();
+    </script>
+</body>
+</html>
