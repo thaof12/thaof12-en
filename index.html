@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Trần Thế Hào - Game Designer & Software Engineer Portfolio. Specializing in 2D educational games, Cocos Creator, Godot Engine, ReactJS, Supabase.">
-    <meta name="keywords" content="Game Designer, Software Engineer, Cocos Creator, Godot Engine, ReactJS, Trần Thế Hào, Portfolio">
+    <meta name="description" content="Trần Thế Hào - Game QA & Software Engineer Portfolio. Hands-on experience in game quality assurance, test cases, Jira bug reporting, Godot Engine, Cocos Creator, ReactJS.">
+    <meta name="keywords" content="Game QA, QA Tester, Software Engineer, Jira, Test Cases, Cocos Creator, Godot Engine, ReactJS, Trần Thế Hào, Portfolio">
     <meta name="author" content="Trần Thế Hào">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Trần Thế Hào | Game Designer & Software Engineer">
-    <meta property="og:description" content="Final-year Software Engineering student aiming to become a Game Designer for 2D educational games.">
+    <meta property="og:title" content="Trần Thế Hào | Game QA & Software Engineer">
+    <meta property="og:description" content="Software Engineering graduate with hands-on experience testing and debugging games and web platforms, eager to start a career in game quality assurance.">
     <meta property="og:type" content="website">
     
-    <title>Trần Thế Hào | Game Designer & Software Engineer</title>
+    <title>Trần Thế Hào | Game QA & Software Engineer</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1332,6 +1332,15 @@
             display: flex;
             align-items: center;
             gap: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .cv-modal-actions .btn-sm {
+            white-space: nowrap;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cv-modal-close {
@@ -1365,6 +1374,187 @@
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
+        }
+
+        /* ==========================================================================
+           QA & TESTING SECTION & LIGHTBOX
+           ========================================================================== */
+        .skill-category--wide {
+            grid-column: 1 / -1;
+        }
+
+        .qa-inline-link {
+            color: var(--accent-link);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: var(--transition);
+        }
+
+        .qa-inline-link:hover {
+            color: var(--text-heading);
+        }
+
+        .qa-intro-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem 2.25rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.35rem;
+        }
+
+        .qa-intro-text {
+            color: var(--text-body);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .qa-intro-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            align-items: center;
+        }
+
+        .qa-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .qa-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .qa-card:hover {
+            border-color: var(--border-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .qa-thumb-btn {
+            border: none;
+            padding: 0;
+            background: var(--bg-subtle);
+            cursor: zoom-in;
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .qa-thumb-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.25s ease;
+        }
+
+        .qa-card:hover .qa-thumb-btn img {
+            transform: scale(1.02);
+        }
+
+        .qa-caption {
+            padding: 0.95rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.65rem;
+            font-size: 0.86rem;
+            color: var(--text-body);
+            line-height: 1.45;
+        }
+
+        .qa-badge {
+            font-family: var(--font-code);
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 0.2rem 0.55rem;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            color: var(--text-heading);
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .qa-lightbox {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(26, 25, 23, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 2100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .qa-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .qa-lightbox-content {
+            position: relative;
+            max-width: 1120px;
+            width: 100%;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .qa-lightbox-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-base);
+            gap: 1rem;
+        }
+
+        .qa-lightbox-title {
+            font-family: var(--font-heading);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .qa-lightbox-body {
+            background: #1a1917;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .qa-lightbox-body img {
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
             display: block;
         }
 
@@ -1448,7 +1638,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .skills-grid {
+            .skills-grid,
+            .qa-gallery {
                 grid-template-columns: 1fr;
             }
 
@@ -1647,15 +1838,18 @@
         <div class="hero-container">
             <div class="hero-content" data-aos="fade-up">
                 <h1 class="font-premium-serif">Trần Thế Hào</h1>
-                <p class="hero-subtitle">Game Designer & Software Engineer</p>
+                <p class="hero-subtitle">Game QA & Software Engineer</p>
                 <p class="hero-description">
-                    Final-year Software Engineering student aiming to become a Game Designer for 2D educational games. 
-                    Independently designed and developed 2 games (Godot, Cocos Creator) and 1 web-based learning platform with 4 user roles. 
-                    Strength: turning academic knowledge into interactive gameplay mechanics, combining a testing mindset with bug diagnosis to fine-tune the player experience.
+                    Software Engineering graduate (all credits completed, degree expected Nov 30, 2026) with hands-on experience testing and debugging my own games and web platform. 
+                    I have diagnosed asset-loading issues, UI bugs, and browser compatibility problems, and I trace problems back to their root cause. 
+                    Familiar with many game genres (FPS, MOBA, battle royale, puzzle, casual) and eager to start a career in game quality assurance.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-arrow-down"></i> View Projects
+                    </a>
+                    <a href="#qa" class="btn btn-secondary">
+                        <i class="fas fa-bug"></i> View QA & Testing
                     </a>
                     <button type="button" class="btn btn-secondary" id="btnOpenCv">
                         <i class="fas fa-file-pdf"></i> View CV
@@ -1699,11 +1893,21 @@
                 <p class="section-subtitle">Technical proficiencies honed through real-world game and system development</p>
             </div>
             <div class="skills-grid">
+                <div class="skill-category skill-category--wide" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-category-header">
+                        <h3>Testing</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Test Cases</span>
+                        <span class="skill-tag">Bug Reporting</span>
+                        <span class="skill-tag">Jira</span>
+                        <span class="skill-tag">Cross-browser Testing</span>
+                        <span class="skill-tag">Root-cause Analysis</span>
+                    </div>
+                </div>
+
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="50">
                     <div class="skill-category-header">
-                        <div class="skill-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
                         <h3>Game Design</h3>
                     </div>
                     <div class="skill-tags">
@@ -1718,9 +1922,6 @@
 
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
                     <div class="skill-category-header">
-                        <div class="skill-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
                         <h3>Engine & Code</h3>
                     </div>
                     <div class="skill-tags">
@@ -1735,9 +1936,6 @@
 
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="150">
                     <div class="skill-category-header">
-                        <div class="skill-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
                         <h3>Web & Systems</h3>
                     </div>
                     <div class="skill-tags">
@@ -1752,9 +1950,6 @@
 
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
                     <div class="skill-category-header">
-                        <div class="skill-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
                         <h3>Soft Skills</h3>
                     </div>
                     <div class="skill-tags">
@@ -1852,9 +2047,6 @@
                             <li>
                                 <strong>Interactive Mechanics:</strong> Built interactive mechanics: players adjust parameters themselves and see results instantly (light rays drawn dynamically with 2D raycasting, 2D collider collisions, gravity counterbalancing/lifting).
                             </li>
-                            <li>
-                                <strong>Error Analysis & Support:</strong> Developed error-analysis skills and practiced technical support in real-world scenarios.
-                            </li>
                         </ul>
                     </div>
                 </article>
@@ -1928,13 +2120,16 @@
 
                         <ul class="project-feature-list">
                             <li>
-                                <strong>Scenario Design & Testing:</strong> Designed game scenarios and tested features (Memory Card, Picture Match, Word Catcher, Spell Bridge); managed system data files across multiple platforms.
+                                <strong>QA & Bug Logging:</strong> Wrote 17 test cases (functions, edge cases, audio, slow network, browsers) and logged 5 bugs in Jira with steps to reproduce, environment, and priority.
                             </li>
                             <li>
-                                <strong>Diagnostic Thinking:</strong> Strengthened error-analysis skills and diagnostic thinking, troubleshooting real-world system issues in a business-like setting.
+                                <strong>Troubleshooting & Compatibility:</strong> Diagnosed and resolved asset-loading (images, audio), UI, and browser-compatibility issues.
                             </li>
                             <li>
-                                <strong>Optimization & Compatibility:</strong> Diagnosed and resolved application asset-loading issues (images, audio), UI bugs, and end-user browser compatibility problems.
+                                <strong>Scenario Design & Data Management:</strong> Designed scenarios for four mini-games (Memory Card, Picture Match, Word Catcher, Spell Bridge) and managed data files across platforms.
+                            </li>
+                            <li>
+                                <strong>QA report:</strong> <a href="#qa" class="qa-inline-link">see QA & Testing section</a>
                             </li>
                         </ul>
                     </div>
@@ -2047,6 +2242,98 @@
         </div>
     </section>
 
+    <!-- QA & Testing Section -->
+    <section class="qa-section" id="qa">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">QA & Testing</h2>
+                <p class="section-subtitle">End-to-end manual testing, test case design, and Jira bug tracking for Shi with You</p>
+            </div>
+
+            <div class="qa-intro-box" data-aos="fade-up">
+                <p class="qa-intro-text">
+                    To practice game quality assurance, I tested my English-learning game Shi with You from start to finish. I wrote 17 test cases covering core functions, edge cases, audio, slow-network loading, window resizing, and browsers (Chrome and Edge). I then logged the 5 issues I found in Jira, each with environment details, steps to reproduce, expected and actual results, and priority.
+                </p>
+                <div class="qa-intro-actions">
+                    <a href="https://docs.google.com/spreadsheets/d/1NWD5Yy3ZmbOR9OpK3xcG12daijOcjYk_h3Dh9smAprY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="fas fa-table"></i> Test cases (Google Sheets)
+                    </a>
+                </div>
+            </div>
+
+            <div class="qa-gallery" data-aos="fade-up">
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-board.png" data-qa-title="Board — Jira Board overview of 5 logged issues (SWYQ-1 to SWYQ-5)">
+                        <img src="jira-board.png" alt="Jira Board - Shi with You QA" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">Board</span>
+                        <span>Jira Board overview of the 5 logged issues (SWYQ-1 to SWYQ-5)</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-list.png" data-qa-title="List — Jira issue list with priority, reporter, and status">
+                        <img src="jira-list.png" alt="Jira List - Shi with You QA" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">List</span>
+                        <span>Jira issue list showing priority, reporter, and status</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-1.png" data-qa-title="SWYQ-1 — [Settings] &quot;Voice&quot; slider is displayed but not connected to any game feature">
+                        <img src="jira-swyq-1.png" alt="Jira SWYQ-1 - Voice slider issue" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">SWYQ-1</span>
+                        <span>[Settings] "Voice" slider is displayed but not connected to any game feature</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-2.png" data-qa-title="SWYQ-2 — [Welcome screen] &quot;Exit&quot; button only mutes music and leaves other buttons unresponsive">
+                        <img src="jira-swyq-2.png" alt="Jira SWYQ-2 - Exit button issue" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">SWYQ-2</span>
+                        <span>[Welcome screen] "Exit" button only mutes music and leaves other buttons unresponsive</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-3.png" data-qa-title="SWYQ-3 — [Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)">
+                        <img src="jira-swyq-3.png" alt="Jira SWYQ-3 - Slow 4G performance issue" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">SWYQ-3</span>
+                        <span>[Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-4.png" data-qa-title="SWYQ-4 — [Picture Match / Word Catcher] Icon next to score displays as missing-glyph box">
+                        <img src="jira-swyq-4.png" alt="Jira SWYQ-4 - Score icon missing-glyph issue" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">SWYQ-4</span>
+                        <span>[Picture Match / Word Catcher] Icon next to score displays as missing-glyph box</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="qa-card">
+                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-5.png" data-qa-title="SWYQ-5 — [Welcome screen] Falling effect elements display as missing-glyph boxes">
+                        <img src="jira-swyq-5.png" alt="Jira SWYQ-5 - Falling effect missing-glyph issue" loading="lazy">
+                    </button>
+                    <figcaption class="qa-caption">
+                        <span class="qa-badge">SWYQ-5</span>
+                        <span>[Welcome screen] Falling effect elements display as missing-glyph boxes</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
 
     <!-- Education Section -->
     <section class="education section-alt" id="education">
@@ -2062,7 +2349,7 @@
                     </div>
                     <h3>Nguyen Tat Thanh University</h3>
                     <p class="school">Faculty of Information Technology – Software Engineering</p>
-                    <p class="details">Duration: 2022 – 2026</p>
+                    <p class="details">Duration: 2022 – 2026 | Degree expected Nov 30, 2026</p>
                     <p class="education-gpa"><strong>GPA: 3.61 / 4.0</strong></p>
                 </div>
 
@@ -2155,10 +2442,10 @@
                     <span>Trần Thế Hào - Curriculum Vitae</span>
                 </div>
                 <div class="cv-modal-actions">
-                    <a href="TranTheHao - CV.pdf" download="TranTheHao - CV.pdf" class="btn btn-secondary btn-sm">
+                    <a href="TranTheHao - CV - QA.pdf" download="TranTheHao - CV - QA.pdf" class="btn btn-secondary btn-sm">
                         <i class="fas fa-download"></i> Download
                     </a>
-                    <a href="TranTheHao - CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <a href="TranTheHao - CV - QA.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
                         <i class="fas fa-arrow-up-right-from-square"></i> Open in new tab
                     </a>
                     <button type="button" class="cv-modal-close" id="cvModalClose" aria-label="Close preview modal">
@@ -2167,7 +2454,22 @@
                 </div>
             </div>
             <div class="cv-modal-body">
-                <iframe src="TranTheHao - CV.pdf" class="cv-iframe" title="TranTheHao - CV Preview"></iframe>
+                <iframe src="TranTheHao - CV - QA.pdf" class="cv-iframe" title="TranTheHao - CV - QA Preview"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- QA Screenshot Lightbox -->
+    <div class="qa-lightbox" id="qaLightbox" aria-hidden="true">
+        <div class="qa-lightbox-content" role="dialog" aria-modal="true" aria-labelledby="qaLightboxTitle">
+            <div class="qa-lightbox-header">
+                <div class="qa-lightbox-title" id="qaLightboxTitle"></div>
+                <button type="button" class="cv-modal-close" id="qaLightboxClose" aria-label="Close image preview">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+            <div class="qa-lightbox-body">
+                <img alt="QA screenshot preview" id="qaLightboxImg">
             </div>
         </div>
     </div>
@@ -2346,6 +2648,51 @@
 
         document.addEventListener('DOMContentLoaded', initProjectSliders);
         initProjectSliders();
+
+        // QA Screenshot Lightbox Controller
+        const qaLightbox = document.getElementById('qaLightbox');
+        const qaLightboxImg = document.getElementById('qaLightboxImg');
+        const qaLightboxTitle = document.getElementById('qaLightboxTitle');
+        const qaLightboxClose = document.getElementById('qaLightboxClose');
+
+        function openQaLightbox(src, title) {
+            if (!qaLightbox || !qaLightboxImg || !qaLightboxTitle) return;
+            qaLightboxImg.src = src;
+            qaLightboxImg.alt = title;
+            qaLightboxTitle.textContent = title;
+            qaLightbox.classList.add('active');
+            qaLightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeQaLightbox() {
+            if (!qaLightbox) return;
+            qaLightbox.classList.remove('active');
+            qaLightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.querySelectorAll('.qa-thumb-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                openQaLightbox(btn.dataset.qaSrc, btn.dataset.qaTitle);
+            });
+        });
+
+        if (qaLightboxClose) {
+            qaLightboxClose.addEventListener('click', closeQaLightbox);
+        }
+
+        if (qaLightbox) {
+            qaLightbox.addEventListener('click', (e) => {
+                if (e.target === qaLightbox) closeQaLightbox();
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && qaLightbox && qaLightbox.classList.contains('active')) {
+                closeQaLightbox();
+            }
+        });
     </script>
 </body>
 </html>
