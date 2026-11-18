@@ -1427,6 +1427,39 @@
             align-items: center;
         }
 
+        .qa-project-group {
+            margin-bottom: 3rem;
+        }
+
+        .qa-project-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .qa-project-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .qa-project-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .qa-project-meta {
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
         .qa-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -2094,6 +2127,9 @@
 
                         <ul class="project-feature-list">
                             <li>
+                                <strong>QA & Bug Logging:</strong> Tested the game with 34 test cases (controls, gameplay rules, edge cases, audio, loading, browsers, iPhone) and logged 3 bugs in Jira (<a href="#qa" class="qa-inline-link">see QA & Testing section</a>).
+                            </li>
+                            <li>
                                 <strong>Puzzle Level Design:</strong> Designed puzzle levels built around 3 physical phenomena: spring elastic force (Hooke's law), refraction/reflection of light through a lens system, and cable–pulley mechanics in an elevator.
                             </li>
                             <li>
@@ -2299,12 +2335,12 @@
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
                 <h2 class="section-title">QA & Testing</h2>
-                <p class="section-subtitle">End-to-end manual testing, test case design, and Jira bug tracking for Shi with You</p>
+                <p class="section-subtitle">End-to-end manual testing, test case design, and Jira bug tracking for Robot Eureka and Shi with You</p>
             </div>
 
             <div class="qa-intro-box" data-aos="fade-up">
                 <p class="qa-intro-text">
-                    To practice game quality assurance, I tested my English-learning game Shi with You from start to finish. I wrote 17 test cases covering core functions, edge cases, audio, slow-network loading, window resizing, and browsers (Chrome and Edge). I then logged the 5 issues I found in Jira, each with environment details, steps to reproduce, expected and actual results, and priority.
+                    To practice game quality assurance (Game QA), I conducted manual testing and Jira bug tracking for two projects: <strong>Robot Eureka</strong> (tested with 34 test cases covering controls, gameplay rules, edge cases, audio, loading, browsers, iPhone; logged 3 bugs on Jira) and <strong>Shi with You</strong> (17 test cases, 5 bugs logged on Jira). All issues include detailed environments, reproduction steps, expected/actual results, and priorities.
                 </p>
                 <div class="qa-intro-actions">
                     <a href="https://docs.google.com/spreadsheets/d/1NWD5Yy3ZmbOR9OpK3xcG12daijOcjYk_h3Dh9smAprY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -2313,76 +2349,142 @@
                 </div>
             </div>
 
-            <div class="qa-gallery" data-aos="fade-up">
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-board.png" data-qa-title="Board — Jira Board overview of 5 logged issues (SWYQ-1 to SWYQ-5)">
-                        <img src="jira-board.png" alt="Jira Board - Shi with You QA" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">Board</span>
-                        <span>Jira Board overview of the 5 logged issues (SWYQ-1 to SWYQ-5)</span>
-                    </figcaption>
-                </figure>
+            <!-- Group 1: Robot Eureka -->
+            <div class="qa-project-group" data-aos="fade-up">
+                <div class="qa-project-header">
+                    <h3 class="qa-project-title">Robot Eureka</h3>
+                    <span class="qa-project-meta">34 Test Cases • 3 Jira Issues</span>
+                </div>
+                <div class="qa-gallery">
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-robot.png" data-qa-title="Board — Jira Board overview of 3 logged issues (REQA-1 to REQA-3)">
+                            <img src="jira-robot.png" alt="Jira Board - Robot Eureka QA" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">Board</span>
+                            <span>Jira Board overview of 3 logged issues (REQA-1 to REQA-3)</span>
+                        </figcaption>
+                    </figure>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-list.png" data-qa-title="List — Jira issue list with priority, reporter, and status">
-                        <img src="jira-list.png" alt="Jira List - Shi with You QA" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">List</span>
-                        <span>Jira issue list showing priority, reporter, and status</span>
-                    </figcaption>
-                </figure>
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-robot-list.png" data-qa-title="List — Issue list in Jira showing priority, reporter, and status">
+                            <img src="jira-robot-list.png" alt="Jira List - Robot Eureka QA" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">List</span>
+                            <span>Issue list in Jira showing priority, reporter, and status</span>
+                        </figcaption>
+                    </figure>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-1.png" data-qa-title="SWYQ-1 — [Settings] &quot;Voice&quot; slider is displayed but not connected to any game feature">
-                        <img src="jira-swyq-1.png" alt="Jira SWYQ-1 - Voice slider issue" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">SWYQ-1</span>
-                        <span>[Settings] "Voice" slider is displayed but not connected to any game feature</span>
-                    </figcaption>
-                </figure>
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-reqa-1.png" data-qa-title="REQA-1 — [Settings] Background music &quot;off&quot; setting is ignored in Scene 1 and Scene 2 (RE02, RE34)">
+                            <img src="jira-reqa-1.png" alt="Jira REQA-1 - Background music setting ignored" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">REQA-1</span>
+                            <span>[Settings] Background music "off" setting is ignored in Scene 1 and Scene 2 (RE02, RE34)</span>
+                        </figcaption>
+                    </figure>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-2.png" data-qa-title="SWYQ-2 — [Welcome screen] &quot;Exit&quot; button only mutes music and leaves other buttons unresponsive">
-                        <img src="jira-swyq-2.png" alt="Jira SWYQ-2 - Exit button issue" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">SWYQ-2</span>
-                        <span>[Welcome screen] "Exit" button only mutes music and leaves other buttons unresponsive</span>
-                    </figcaption>
-                </figure>
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-reqa-2.png" data-qa-title="REQA-2 — [Mobile] Demo link opens on phones but Start button is unresponsive and lacks keyboard notice (RE32)">
+                            <img src="jira-reqa-2.png" alt="Jira REQA-2 - Mobile demo unresponsive" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">REQA-2</span>
+                            <span>[Mobile] Demo link opens on phones but Start button is unresponsive and lacks keyboard notice (RE32)</span>
+                        </figcaption>
+                    </figure>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-3.png" data-qa-title="SWYQ-3 — [Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)">
-                        <img src="jira-swyq-3.png" alt="Jira SWYQ-3 - Slow 4G performance issue" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">SWYQ-3</span>
-                        <span>[Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)</span>
-                    </figcaption>
-                </figure>
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-reqa-3.png" data-qa-title="REQA-3 — [Performance] Full game load takes ~2.7 min (13 MB) on Slow 4G due to large PNGs and audio (RE29)">
+                            <img src="jira-reqa-3.png" alt="Jira REQA-3 - Slow 4G loading performance" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">REQA-3</span>
+                            <span>[Performance] Full game load takes ~2.7 min (13 MB) on Slow 4G due to large PNGs and audio (RE29)</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-4.png" data-qa-title="SWYQ-4 — [Picture Match / Word Catcher] Icon next to score displays as missing-glyph box">
-                        <img src="jira-swyq-4.png" alt="Jira SWYQ-4 - Score icon missing-glyph issue" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">SWYQ-4</span>
-                        <span>[Picture Match / Word Catcher] Icon next to score displays as missing-glyph box</span>
-                    </figcaption>
-                </figure>
+            <!-- Group 2: Shi with You -->
+            <div class="qa-project-group" data-aos="fade-up">
+                <div class="qa-project-header">
+                    <h3 class="qa-project-title">Shi with You</h3>
+                    <span class="qa-project-meta">17 Test Cases • 5 Jira Issues</span>
+                </div>
+                <div class="qa-gallery">
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-board.png" data-qa-title="Board — Jira Board overview of 5 logged issues (SWYQ-1 to SWYQ-5)">
+                            <img src="jira-board.png" alt="Jira Board - Shi with You QA" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">Board</span>
+                            <span>Jira Board overview of the 5 logged issues (SWYQ-1 to SWYQ-5)</span>
+                        </figcaption>
+                    </figure>
 
-                <figure class="qa-card">
-                    <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-5.png" data-qa-title="SWYQ-5 — [Welcome screen] Falling effect elements display as missing-glyph boxes">
-                        <img src="jira-swyq-5.png" alt="Jira SWYQ-5 - Falling effect missing-glyph issue" loading="lazy">
-                    </button>
-                    <figcaption class="qa-caption">
-                        <span class="qa-badge">SWYQ-5</span>
-                        <span>[Welcome screen] Falling effect elements display as missing-glyph boxes</span>
-                    </figcaption>
-                </figure>
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-list.png" data-qa-title="List — Jira issue list with priority, reporter, and status">
+                            <img src="jira-list.png" alt="Jira List - Shi with You QA" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">List</span>
+                            <span>Jira issue list showing priority, reporter, and status</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-1.png" data-qa-title="SWYQ-1 — [Settings] &quot;Voice&quot; slider is displayed but not connected to any game feature">
+                            <img src="jira-swyq-1.png" alt="Jira SWYQ-1 - Voice slider issue" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">SWYQ-1</span>
+                            <span>[Settings] "Voice" slider is displayed but not connected to any game feature</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-2.png" data-qa-title="SWYQ-2 — [Welcome screen] &quot;Exit&quot; button only mutes music and leaves other buttons unresponsive">
+                            <img src="jira-swyq-2.png" alt="Jira SWYQ-2 - Exit button issue" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">SWYQ-2</span>
+                            <span>[Welcome screen] "Exit" button only mutes music and leaves other buttons unresponsive</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-3.png" data-qa-title="SWYQ-3 — [Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)">
+                            <img src="jira-swyq-3.png" alt="Jira SWYQ-3 - Slow 4G performance issue" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">SWYQ-3</span>
+                            <span>[Performance] Initial load takes about 4.3 minutes on Slow 4G (45.9 MB)</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-4.png" data-qa-title="SWYQ-4 — [Picture Match / Word Catcher] Icon next to score displays as missing-glyph box">
+                            <img src="jira-swyq-4.png" alt="Jira SWYQ-4 - Score icon missing-glyph issue" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">SWYQ-4</span>
+                            <span>[Picture Match / Word Catcher] Icon next to score displays as missing-glyph box</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="qa-card">
+                        <button type="button" class="qa-thumb-btn" data-qa-src="jira-swyq-5.png" data-qa-title="SWYQ-5 — [Welcome screen] Falling effect elements display as missing-glyph boxes">
+                            <img src="jira-swyq-5.png" alt="Jira SWYQ-5 - Falling effect missing-glyph issue" loading="lazy">
+                        </button>
+                        <figcaption class="qa-caption">
+                            <span class="qa-badge">SWYQ-5</span>
+                            <span>[Welcome screen] Falling effect elements display as missing-glyph boxes</span>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
     </section>
